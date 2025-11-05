@@ -30,6 +30,25 @@ Attenzione: scrivere poche volte altrimenti se no si danneggia
 Verificare quanti cicli read/write sono concessi
 
 ********************************************************
+Sorgente diviso su più file
+Compilo il file uno alla volta e creo object files
+Poi auomaticamente parte linker che crea il compilato
+
+Operativamente 
+Metto file con main e funzioni in stessa cartella (tutti file .ino)
+Compilo il main e si linkano anche gli altri file 
+
+********************************************************
+In monitor serial fare print di numero di versione del codice
+
+********************************************************
+pixels.setPixelColor
+fa crashdelay(1)
+pixels.show()
+
+delay serve altrimenti va in crash in alcuni casi
+
+
 
 
 
