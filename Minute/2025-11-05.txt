@@ -1,0 +1,51 @@
+2025-11-05 
+
+Discussione sui puntatori
+Passare valori per puntatori
+Puntatore: è un indirizzo di memoria
+Su Arduino il puntatore è 2 byte
+
+Passare per valore
+Si passa ad una funzione il valore di una variabile >>> di faccio fanno una copia
+
+Passaggio di vallori a funzione in C
+C non consente di passare vettori
+C consente di passare una struct
+
+In C e C++ fanno un controllo sui tipi per evitare di scrivere su aree di memoria sbagliate
+
+Tramite puntatore posso puntare ad una funzione
+
+C#: pensati per essere più sicuri
+Non hanno i puntatori e cast di variabili almeno in modlità safe
+
+Con poche risposte a disposizioni meglio essere conservativi come risorse (Arduino)
+
+********************************************************
+Idea interessnte
+
+Libreria EEPROM.h
+Possibile salvare stato su EEPROM
+Attenzione: scrivere poche volte altrimenti se no si danneggia
+Verificare quanti cicli read/write sono concessi
+
+********************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
