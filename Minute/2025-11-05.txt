@@ -1,25 +1,24 @@
-2025-11-05 
+# 2025-11-05 
 
-Discussione sui puntatori
-Passare valori per puntatori
+## Discussione sui puntatori
 Puntatore: è un indirizzo di memoria
 Su Arduino il puntatore è 2 byte
+Passare variabili per puntatori: la funzione opera direttamente sull'indirizzo di memoria che contiene la variabile
 
-Passare per valore
-Si passa ad una funzione il valore di una variabile >>> di faccio fanno una copia
+Passare variabili per valore: Si passa ad una funzione il valore di una variabile --> viene allocata memoria per una copia della variabile, si consuma il doppio della memoria
+
+In C e C++ fanno un controllo sui tipi per evitare di scrivere su aree di memoria sbagliate
+Scrivere o leggere in celle di memoria sbagliate può causare bug, crash, o problemi di sicurezza informatica (errori di buffer overflow, use-after-free, null pointer deference, memory leaks)
+Tramite puntatore posso puntare ad una funzione
 
 Passaggio di vallori a funzione in C
 C non consente di passare vettori
 C consente di passare una struct
 
-In C e C++ fanno un controllo sui tipi per evitare di scrivere su aree di memoria sbagliate
-
-Tramite puntatore posso puntare ad una funzione
-
 C#: pensati per essere più sicuri
 Non hanno i puntatori e cast di variabili almeno in modlità safe
 
-Con poche risposte a disposizioni meglio essere conservativi come risorse (Arduino)
+Con poche risorse a disposizione, meglio essere conservativi (Arduino/Wemos)
 
 ********************************************************
 Idea interessnte
@@ -27,7 +26,12 @@ Idea interessnte
 Libreria EEPROM.h
 Possibile salvare stato su EEPROM
 Attenzione: scrivere poche volte altrimenti se no si danneggia
-Verificare quanti cicli read/write sono concessi
+ATMEL considera attendibili 100.000 cicli di scrittura su ogni cella della EEPROM prima di danneggiarsi 
+Si può passare funzione di scrittura su EEPROM l'indirizzo da cui iniziare a scrivere, quindi si potrebbe inserire non solo lo stato ma anche un contatore di scritture, per spostare l'indirizzo di memoria usato dal programma, magari distribuendo le scritture su tutte le celle di memoria.
+
+la scrittura su EEPROM impiega 3,3ms
+I microcontrollori wemos hanno 4Mb di memoria flash EEPROM 
+Altri esempi di capacità di memorie EEPROM: Arduino Uno 1 KB, Arduino Mega 4 KB, Arduino Nano 1 KB
 
 ********************************************************
 Sorgente diviso su più file
@@ -38,16 +42,21 @@ Operativamente
 Metto file con main e funzioni in stessa cartella (tutti file .ino)
 Compilo il main e si linkano anche gli altri file 
 
+Una strutturazione di un programma fatto in questo modo è comunque da considerare monolitica, e le funzioni non saranno riutilizzabili direttamente in altri programmi a meno di strutturarlo in modo identico a questo. 
+Per evitare il problema resta ottimale mettere le funzioni in un header, e rendere quindi il programma modulare. 
+
 ********************************************************
-In monitor serial fare print di numero di versione del codice
+In monitor serial fare print di numero di versione del codice per confermare visualmente che il programma corretto sia stato caricato
 
 ********************************************************
 pixels.setPixelColor
 fa crashdelay(1)
 pixels.show()
 
-delay serve altrimenti va in crash in alcuni casi
+delay breve serve altrimenti va in crash in alcuni casi (operazioni più lente dei cicli del processore) 
 
+Avere dei busy loop limita la responsività, perché passa quasi tutto il tempo dentro il loop di operazioni, e solo di rado passa a valutare gli input (accensione/spegnimento, cambio modalità, dimmer). 
+Bisogna quindi strutturare diversamente il codice
 
 
 
