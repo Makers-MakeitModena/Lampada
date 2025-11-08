@@ -33,6 +33,9 @@ la scrittura su EEPROM impiega 3,3ms
 I microcontrollori wemos hanno 4Mb di memoria flash EEPROM 
 Altri esempi di capacità di memorie EEPROM: Arduino Uno 1 KB, Arduino Mega 4 KB, Arduino Nano 1 KB
 
+Per la guida sulla memoria di Aurduino
+https://docs.arduino.cc/learn/programming/memory-guide/ 
+
 ********************************************************
 Sorgente diviso su più file
 Compilo il file uno alla volta e creo object files
